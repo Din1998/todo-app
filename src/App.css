@@ -1977,3 +1977,32 @@ button:focus {
   background-color: hsl(var(--violet)/0.1) !important;
   color: hsl(var(--violet)) !important;
 }
+
+
+/* task card */
+
+.task-card{
+  background: hsl(var(--base)/0.5);
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid hsl(var(--base));
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-card .text-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.task-card .user-cta{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}

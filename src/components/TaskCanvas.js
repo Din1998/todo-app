@@ -1,5 +1,6 @@
 import { Row, Col, Container } from 'react-bootstrap'
 import AddTaskModal from './AddTaskModal'
+import TaskBoard from './TaskBoard'
 
 
 export default function TaskCanvas() {
@@ -16,6 +17,9 @@ export default function TaskCanvas() {
           <Col className='d-flex justify-content-end'>
             <AddTaskModal />
           </Col>
+        </Row>
+        <Row>
+          <TaskBoard />
         </Row>
       </Container>
     </section>
