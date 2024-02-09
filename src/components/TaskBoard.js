@@ -1,15 +1,10 @@
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap';
 import TaskCard from './TaskCard';
 import { useState, useEffect } from 'react';
 
-
-
-export default function TaskBoard() {
-
-
+export default function TaskBoard({ todoListFromParent }) {
   const [todoList, setTodoList] = useState([]);
 
-  // Function to delete a todo item
   const handleDeleteTodo = (index) => {
     const updatedTodoList = [...todoList];
     updatedTodoList.splice(index, 1);
@@ -17,7 +12,6 @@ export default function TaskBoard() {
     localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
   };
 
-  // Function to edit a todo item
   const handleEditTodo = (index, updatedTodo) => {
     const updatedTodoList = [...todoList];
     updatedTodoList[index] = updatedTodo;
@@ -25,13 +19,15 @@ export default function TaskBoard() {
     localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
   };
 
-
+  useEffect(() => {
+    // Set todoList when todoListFromParent changes
+    setTodoList(todoListFromParent);
+  }, [todoListFromParent]);
 
   useEffect(() => {
-    console.log('Fetching data from localStorage...');
+    // Load todoList from localStorage on component mount
     const storedTodoList = JSON.parse(localStorage.getItem('todoList'));
     if (storedTodoList) {
-      console.log('Stored Todo List:', storedTodoList);
       setTodoList(storedTodoList);
     }
   }, []);
@@ -41,33 +37,30 @@ export default function TaskBoard() {
   return (
     <section>
       <Container>
-        <Row>
-          <Col lg={4}>
-            <h6>On Going</h6>
+        <Row className='justify-content-center'>
+          <Col lg={6}>
+            {todoList.length === 0 ? (
+              <h6 className='title'>No Task Available</h6>
+            ) : (
+              <h6 className='title'>All Task</h6>
+            )}
             {todoList.map((data, index) => {
-              console.log(data);
               return (
                 <div key={index}>
-                  <TaskCard
-                    title={data.title}
-                    priority={data.priority}
-                    onDelete={() => handleDeleteTodo(index)}
-                    onEdit={(updatedTodo) => handleEditTodo(index, updatedTodo)}
-                  />
+                  {data && ( // Add a conditional check to ensure data exists
+                    <TaskCard
+                      title={data.title}
+                      priority={data.priority}
+                      onDelete={() => handleDeleteTodo(index)}
+                      onEdit={(updatedTodo) => handleEditTodo(index, updatedTodo)}
+                    />
+                  )}
                 </div>
-              )
+              );
             })}
-
-          </Col>
-          <Col lg={4}>
-            <h6>In Progress</h6>
-          </Col>
-          <Col lg={4}>
-            <h6>Complete</h6>
-
           </Col>
         </Row>
       </Container>
     </section>
-  )
+  );
 }

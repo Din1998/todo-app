@@ -23,11 +23,27 @@ export default function TaskCard({ title, priority, onDelete, onEdit }) {
   const handleShow = () => setShow(true);
 
 
+
+
   return (
     <div className="task-card">
       <div className="text-content">
         <h6>{title}</h6>
-        <h6>{priority}</h6>
+        {priority === '1' && (
+          <>
+            <span className="badge badge--danger me-4">High</span>
+          </>
+        )}
+        {priority === '2' && (
+          <>
+            <span className="badge badge--success me-4">Medium</span>
+          </>
+        )}
+        {priority === '3' && (
+          <>
+            <span className="badge badge--info me-4">Low</span>
+          </>
+        )}
       </div>
       <div className="user-cta">
         <button onClick={handleShow}><i className="fa-regular fa-pen-to-square"></i></button>
@@ -41,37 +57,31 @@ export default function TaskCard({ title, priority, onDelete, onEdit }) {
           <Modal.Title>Add Your Task</Modal.Title>
         </Modal.Header>
 
-
-        <div class="mb-4 form-group">
-          <label class="mb-2">Todo Title</label>
-          <input
-            class="form_control"
-            required
-            name="title"
-            value={editedTitle}
-            onChange={(e) => setEditedTitle(e.target.value)}
-          />
+        <div className='todo-form'>
+          <div class="mb-4 form-group">
+            <label class="mb-2">Todo Title</label>
+            <input
+              class="form_control"
+              required
+              name="title"
+              value={editedTitle}
+              onChange={(e) => setEditedTitle(e.target.value)}
+            />
+          </div>
+          <div class="mb-4 form-group">
+            <select
+              className='form_control'
+              name="priority"
+              value={editedPriority}
+              onChange={(e) => setEditedPriority(e.target.value)}
+            >
+              <option>Open this select menu</option>
+              <option value="1">High</option>
+              <option value="2">Medium</option>
+              <option value="3">Low</option>
+            </select>
+          </div>
         </div>
-
-        <div class="mb-4 form-group">
-          <select
-            className='form_control'
-            name="priority"
-            value={editedPriority}
-            onChange={(e) => setEditedPriority(e.target.value)}
-
-          >
-            <option>Open this select menu</option>
-            <option value="1">High</option>
-            <option value="2">Medium</option>
-            <option value="3">Low</option>
-          </select>
-        </div>
-
-
-
-
-
         <Modal.Footer>
           <button
             className='btn__base btn-sm'

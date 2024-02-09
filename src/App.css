@@ -41,9 +41,9 @@
     --base-component-l: 17%;
     --base-component: var(--base-component-h) var( --base-component-s) var(--base-component-l);
   /*========================= Base Color =============================*/
-    --base-h: 24;
-    --base-s: 100%;
-    --base-l: 50%;
+    --base-h: 185;
+    --base-s: 27%;
+    --base-l: 65%;
     --base: var(--base-h) var( --base-s) var(--base-l);
     /*========================= Base Color2 =============================*/
     --base-h2: 179;
@@ -1954,13 +1954,13 @@ button:focus {
 }
 
 .badge--success {
-  background-color: hsl(var(--success)/0.1) !important;
-  color: hsl(var(--success)) !important;
+  background-color: hsl(var(--success)) !important;
+  color: hsl(var(--black)) !important;
 }
 
 .badge--danger {
-  background-color: hsl(var(--danger)/0.1) !important;
-  color: hsl(var(--danger)) !important;
+  background-color: hsl(var(--danger)) !important;
+  color: hsl(var(--black)) !important;
 }
 
 .badge--warning {
@@ -1969,8 +1969,8 @@ button:focus {
 }
 
 .badge--info {
-  background-color: hsl(var(--info)/0.1) !important;
-  color: hsl(var(--info)) !important;
+  background-color: hsl(var(--info)) !important;
+  color: hsl(var(--black)) !important;
 }
 
 .badge--violet {
@@ -1982,7 +1982,7 @@ button:focus {
 /* task card */
 
 .task-card{
-  background: hsl(var(--base)/0.5);
+  background: hsl(var(--base));
   width: 100%;
   padding: 12px;
   border-radius: 8px;
@@ -2005,4 +2005,21 @@ button:focus {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+.App{
+  height: 100vh;
+}
+
+.todo-main{
+  height: 100%;
+  position: relative;
+}
+
+.todo-form{
+  padding: 20px;
+}
+
+.title{
+  color: hsl(var(--base));
 }
